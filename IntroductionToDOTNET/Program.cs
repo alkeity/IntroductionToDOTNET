@@ -1,4 +1,7 @@
-﻿//#define CLASS_CONSOLE
+﻿#define TASK1
+//#define CHESS
+//#define CHESS_HARD
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,33 +14,67 @@ namespace IntroductionToDOTNET
 	{
 		static void Main(string[] args)
 		{
-#if CLASS_CONSOLE
-			Console.BackgroundColor = ConsoleColor.DarkBlue;
-			Console.ForegroundColor = ConsoleColor.DarkYellow;
-			Console.Title = "Введение в .NET";
-			Console.WriteLine("\tHello .Net!");
-			Console.ResetColor();
-			//Console.SetCursorPosition(22, 11);
-			Console.CursorLeft = 32;
-			Console.CursorTop = 11;
-			Console.Beep(333, 2000);
-			Console.Clear();
-			Console.WriteLine("Привет, .NET!");
+#if TASK1
+			int sizeSimple = 4;
+			int sizeDiamond = 10;
+			int sizePlusMinus = 5;
+
+			Console.WriteLine("Rectangle");
+			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return true; });
+
+			Console.WriteLine("Triangles");
+			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return x <= y; });
+			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return y < sizeSimple - x; });
+			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return x >= y; });
+			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return y >= sizeSimple - x - 1; });
+
+			Console.WriteLine("Diamond");
+			for (int i = 0; i < sizeDiamond; i++)
+			{
+				for (int j = 0; j < sizeDiamond; j++)
+				{
+					if ((i == sizeDiamond / 2 - j - 1) || (i - sizeDiamond / 2 == sizeDiamond - j - 1))
+					{
+						Console.Write('/');
+					}
+					else if (i == j + sizeDiamond / 2 || i == j - sizeDiamond / 2)
+					{
+						Console.Write('\\');
+					}
+					else { Console.Write(' '); }
+				}
+				Console.WriteLine();
+			}
+
+			Console.WriteLine("\n+- square");
+			for (int i = 0; i < sizePlusMinus; i++)
+			{
+				for (int j = 0; j < sizePlusMinus; j++)
+				{
+					if (i % 2 == 0 && j % 2 == 0 || i % 2 != 0 && j % 2 != 0)
+					{
+						Console.Write('+');
+					}
+					else { Console.Write('-'); }
+				}
+				Console.WriteLine();
+			}
 #endif
-			#region ConsoleWriteRegion
-			Console.Write("Введите Ваше имя: ");
-			string firstName = Console.ReadLine();
 
-			Console.Write("Введите Вашу фамилию: ");
-			string lastName = Console.ReadLine();
+		}
 
-			Console.Write("Введите Ваш возраст: ");
-			int age = Convert.ToInt32(Console.ReadLine());
-
-			//Console.WriteLine(firstName + " " + lastName + ", " + age); // str concatenation
-			//Console.WriteLine(string.Format("{0} {1}, {2}", lastName, firstName, age)); // string formatting
-			Console.WriteLine($"{lastName} {firstName}, {age}"); // str interpolation
-			#endregion
+		static void DrawSimpleSymbolShape(int size, char symbol, Func<int, int, bool> filter)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				for (int j = 0; j < size; j++)
+				{
+					if (filter(j, i)) { Console.Write(symbol); }
+					else { Console.Write(' '); }
+				}
+				Console.WriteLine();
+			}
+			Console.WriteLine();
 		}
 	}
 }
