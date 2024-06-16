@@ -1,5 +1,4 @@
-﻿#define TASK1
-//#define CHESS
+﻿//#define TASK1
 //#define CHESS_HARD
 
 using System;
@@ -47,11 +46,22 @@ namespace IntroductionToDOTNET
 			}
 
 			Console.WriteLine("\n+- square");
-			DrawSimpleSymbolShape(
-				sizePlusMinus, '+', '-',
-				(int x, int y) => { return y % 2 == 0 && x % 2 == 0 || y % 2 != 0 && x % 2 != 0; }
-				);
+			DrawSimpleSymbolShape(sizePlusMinus, '+', '-', isBothEvenOrBothOdd);
+#else
+			int size, startX = 10, startY = 2;
+
+			Console.Write("Введите размер доски: ");
+			size = Convert.ToInt32(Console.ReadLine());
+#if CHESS_HARD
+#else
+			DrawSmallChessBoard(size, startX, startY);
 #endif
+#endif
+		}
+
+		static bool isBothEvenOrBothOdd(int x, int y)
+		{
+			return y % 2 == 0 && x % 2 == 0 || y % 2 != 0 && x % 2 != 0;
 		}
 
 		static void DrawSimpleSymbolShape(int size, char sym1, char sym2, Func<int, int, bool> filter)
@@ -62,6 +72,23 @@ namespace IntroductionToDOTNET
 				{
 					if (filter(j, i)) { Console.Write(sym1); }
 					else { Console.Write(sym2); }
+				}
+				Console.WriteLine();
+			}
+			Console.WriteLine();
+		}
+
+		static void DrawSmallChessBoard(int size, int startX, int startY)
+		{
+			Console.CursorTop = startY;
+			for (int i = 0; i < size; i++)
+			{
+				Console.CursorLeft = startX;
+				for (int j = 0; j < size; j++)
+				{
+					if (!isBothEvenOrBothOdd(j, i)) Console.BackgroundColor = ConsoleColor.White;
+					Console.Write("  ");
+					Console.ResetColor();
 				}
 				Console.WriteLine();
 			}
