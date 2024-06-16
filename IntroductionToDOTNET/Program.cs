@@ -20,13 +20,13 @@ namespace IntroductionToDOTNET
 			int sizePlusMinus = 5;
 
 			Console.WriteLine("Rectangle");
-			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return true; });
+			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return true; });
 
 			Console.WriteLine("Triangles");
-			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return x <= y; });
-			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return y < sizeSimple - x; });
-			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return x >= y; });
-			DrawSimpleSymbolShape(sizeSimple, '*', (int x, int y) => { return y >= sizeSimple - x - 1; });
+			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return x <= y; });
+			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return y < sizeSimple - x; });
+			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return x >= y; });
+			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return y >= sizeSimple - x - 1; });
 
 			Console.WriteLine("Diamond");
 			for (int i = 0; i < sizeDiamond; i++)
@@ -47,30 +47,21 @@ namespace IntroductionToDOTNET
 			}
 
 			Console.WriteLine("\n+- square");
-			for (int i = 0; i < sizePlusMinus; i++)
-			{
-				for (int j = 0; j < sizePlusMinus; j++)
-				{
-					if (i % 2 == 0 && j % 2 == 0 || i % 2 != 0 && j % 2 != 0)
-					{
-						Console.Write('+');
-					}
-					else { Console.Write('-'); }
-				}
-				Console.WriteLine();
-			}
+			DrawSimpleSymbolShape(
+				sizePlusMinus, '+', '-',
+				(int x, int y) => { return y % 2 == 0 && x % 2 == 0 || y % 2 != 0 && x % 2 != 0; }
+				);
 #endif
-
 		}
 
-		static void DrawSimpleSymbolShape(int size, char symbol, Func<int, int, bool> filter)
+		static void DrawSimpleSymbolShape(int size, char sym1, char sym2, Func<int, int, bool> filter)
 		{
 			for (int i = 0; i < size; i++)
 			{
 				for (int j = 0; j < size; j++)
 				{
-					if (filter(j, i)) { Console.Write(symbol); }
-					else { Console.Write(' '); }
+					if (filter(j, i)) { Console.Write(sym1); }
+					else { Console.Write(sym2); }
 				}
 				Console.WriteLine();
 			}
