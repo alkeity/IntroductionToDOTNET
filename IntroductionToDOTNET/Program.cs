@@ -1,5 +1,5 @@
 ﻿//#define TASK1
-//#define CHESS_HARD
+#define CHESS_HARD
 
 using System;
 using System.Collections.Generic;
@@ -18,16 +18,13 @@ namespace IntroductionToDOTNET
 			int sizeDiamond = 10;
 			int sizePlusMinus = 5;
 
-			Console.WriteLine("Rectangle");
 			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return true; });
 
-			Console.WriteLine("Triangles");
 			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return x <= y; });
 			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return y < sizeSimple - x; });
 			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return x >= y; });
 			DrawSimpleSymbolShape(sizeSimple, '*', ' ', (int x, int y) => { return y >= sizeSimple - x - 1; });
 
-			Console.WriteLine("Diamond");
 			for (int i = 0; i < sizeDiamond; i++)
 			{
 				for (int j = 0; j < sizeDiamond; j++)
@@ -45,23 +42,23 @@ namespace IntroductionToDOTNET
 				Console.WriteLine();
 			}
 
-			Console.WriteLine("\n+- square");
 			DrawSimpleSymbolShape(sizePlusMinus, '+', '-', isBothEvenOrBothOdd);
 #else
-			int size, startX = 10, startY = 2;
+			int size;
 
 			Console.Write("Введите размер доски: ");
 			size = Convert.ToInt32(Console.ReadLine());
 #if CHESS_HARD
+			DrawHugeChessBoard(size);
 #else
-			DrawSmallChessBoard(size, startX, startY);
+			DrawSmallChessBoard(size, 10, 2);
 #endif
 #endif
 		}
 
 		static bool isBothEvenOrBothOdd(int x, int y)
 		{
-			return y % 2 == 0 && x % 2 == 0 || y % 2 != 0 && x % 2 != 0;
+			return (x + y) % 2 == 0;
 		}
 
 		static void DrawSimpleSymbolShape(int size, char sym1, char sym2, Func<int, int, bool> filter)
@@ -86,11 +83,31 @@ namespace IntroductionToDOTNET
 				Console.CursorLeft = startX;
 				for (int j = 0; j < size; j++)
 				{
-					if (!isBothEvenOrBothOdd(j, i)) Console.BackgroundColor = ConsoleColor.White;
+					if (isBothEvenOrBothOdd(j, i)) { Console.BackgroundColor = ConsoleColor.White; }
 					Console.Write("  ");
 					Console.ResetColor();
 				}
 				Console.WriteLine();
+			}
+			Console.WriteLine();
+		}
+
+		static void DrawHugeChessBoard(int size)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				for (int j = 0; j < size; j++)
+				{
+					for (int y = 0; y < size; y++)
+					{
+						for(int x = 0; x < size; x++)
+						{
+							if ((i + y) % 2 == 0) { Console.Write("* "); }
+							else { Console.Write("  "); }
+						}
+					}
+					Console.WriteLine();
+				}
 			}
 			Console.WriteLine();
 		}
