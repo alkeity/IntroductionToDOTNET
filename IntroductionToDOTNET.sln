@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypes", "DataTypes\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{CC167BC1-97CE-4028-9B40-101F5D5AE05E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calc", "Calc\Calc.csproj", "{A27959CE-0A3D-46D9-92F5-CFB52AD8F118}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CC167BC1-97CE-4028-9B40-101F5D5AE05E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC167BC1-97CE-4028-9B40-101F5D5AE05E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC167BC1-97CE-4028-9B40-101F5D5AE05E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A27959CE-0A3D-46D9-92F5-CFB52AD8F118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A27959CE-0A3D-46D9-92F5-CFB52AD8F118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A27959CE-0A3D-46D9-92F5-CFB52AD8F118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A27959CE-0A3D-46D9-92F5-CFB52AD8F118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
