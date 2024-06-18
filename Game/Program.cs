@@ -8,6 +8,9 @@ namespace Game
 {
 	public class Square
 	{
+		int maxX;
+		int maxY;
+
 		int size;
 		int posX;
 		int posY;
@@ -15,38 +18,47 @@ namespace Game
 
         public Square()
         {
-			size = 5;
+			size = 1;
+			maxX = Console.WindowWidth - size * 2;
+			maxY = Console.WindowHeight - size;
 			posX = (Console.WindowWidth - size * 2) / 2;
 			posY = (Console.WindowHeight - size) / 2;
-			color = ConsoleColor.Cyan;
+			color = ConsoleColor.White;
+        }
+
+        public Square(int size, ConsoleColor color) : this()
+        {
+			Size = size;
+			Color = color;
         }
 
         ~Square() { Console.WriteLine("bye square"); }
 
-		public int getX() { return posX; }
-		public int getY() { return posY; }
-		public int getSize() { return size; }
-
-        public void setColor(ConsoleColor color)
+		public int PosX
 		{
-			this.color = color;
+			get { return posX; }
+			set {  posX = value < 0 ? posX = 0 : value > maxX ? posX = maxX : value; }
 		}
 
-		public void changePosX(int x)
+		public int PosY
 		{
-			posX += x;
-			if (posX < 0) posX = 0;
-			else if (posX > Console.WindowWidth - size * 2) posX = Console.WindowWidth - size * 2;
+			get { return posY; }
+			set { posY = value < 0 ? posY = 0 : value > maxY ? posY = maxY : value; }
 		}
 
-		public void changePosY(int y)
+		public int Size
 		{
-			posY += y;
-			if (posY < 0) posY = 0;
-			else if (posY > Console.WindowHeight - size - 1) posY = Console.WindowHeight - size - 1;
+			get { return size; }
+			set { size = value; }
 		}
 
-		public void Draw(bool clear = false)
+		public ConsoleColor Color
+		{
+			get { return color; }
+			set { color = value; }
+		}
+
+		public void Draw()
 		{
 			Console.BackgroundColor = color;
 			Console.CursorTop = posY;
@@ -67,10 +79,10 @@ namespace Game
 	{
 		static void Main(string[] args)
 		{
-			Console.WindowHeight = 40;
-			Console.WindowWidth = 80;
+			Console.WindowHeight = 20;
+			Console.WindowWidth = 40;
 
-			Square square = new Square();
+			Square square = new Square(3, ConsoleColor.Cyan);
 			ConsoleKey key;
 
 			do
@@ -81,26 +93,25 @@ namespace Game
 				{
 					case ConsoleKey.UpArrow:
 					case ConsoleKey.W:
-						square.changePosY(-1);
+						square.PosY--;
 						break;
 					case ConsoleKey.DownArrow:
 					case ConsoleKey.S:
-						square.changePosY(1);
+						square.PosY++;
 						break;
 					case ConsoleKey.LeftArrow:
 					case ConsoleKey.A:
-						square.changePosX(-1);
+						square.PosX -= 2;
 						break;
 					case ConsoleKey.RightArrow:
 					case ConsoleKey.D:
-						square.changePosX(1);
+						square.PosX += 2;
 						break;
 					default:
 						break;
 				}
 				Console.Clear();
 			} while (key != ConsoleKey.Escape);
-
 		}
 	}
 }
