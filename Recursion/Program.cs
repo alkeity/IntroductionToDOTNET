@@ -10,14 +10,14 @@ namespace Recursion
 	{
 		static ulong Factorial(uint number)
 		{
-			if (number == 0 || number == 1) return 1;
-			return number * Factorial(number - 1);
+			return number <= 1 ? 1 : number * Factorial(number - 1);
 		}
 
 		static ulong Power(uint number, uint power)
 		{
-			if (power == 1) { return number; }
-			return number * Power(number, power - 1);
+			return power == 0 ? 0 :
+				power == 1 ? number :
+				number * Power(number, power - 1);
 		}
 
 		static void Main(string[] args)
