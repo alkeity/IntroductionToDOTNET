@@ -49,7 +49,7 @@ namespace Game
 		public int Size
 		{
 			get { return size; }
-			set { size = value; }
+			set { size = value < 1 ? size = 1 : value > 10 ? size = 10 : value; }
 		}
 
 		public ConsoleColor Color

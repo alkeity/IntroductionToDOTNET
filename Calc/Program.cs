@@ -16,8 +16,8 @@ namespace Calc
 
 			do
 			{
-				var1 = GetInput<double>("Введите первый аргумент: ", Convert.ToDouble);
-				var2 = GetInput<double>("\nВведите второй аргумент: ", Convert.ToDouble);
+				var1 = GetInput<double>("Введите первое число: ", Convert.ToDouble);
+				var2 = GetInput<double>("\nВведите второе число: ", Convert.ToDouble);
 				operation = GetInput<char>("\nВведите желаемую операцию: ", Convert.ToChar);
 
 				try
