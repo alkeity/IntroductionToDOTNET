@@ -22,12 +22,14 @@ namespace Game
 			maxX = Console.WindowWidth - size * 2;
 			maxY = Console.WindowHeight - size;
 			posX = (Console.WindowWidth - size * 2) / 2;
-			posY = (Console.WindowHeight - size) / 2;
+			posY = (Console.WindowHeight - size) / 2 - 1;
 			color = ConsoleColor.White;
         }
 
         public Square(int size, ConsoleColor color) : this()
         {
+			maxX = Console.WindowWidth - size * 2;
+			maxY = Console.WindowHeight - size - 1;
 			Size = size;
 			Color = color;
         }
