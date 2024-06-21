@@ -15,7 +15,7 @@ namespace Recursion
 
 		static ulong Power(uint number, uint power)
 		{
-			return power == 0 ? 0 :
+			return power == 0 ? 1 :
 				power == 1 ? number :
 				number * Power(number, power - 1);
 		}
@@ -40,8 +40,7 @@ namespace Recursion
 
 		static ulong Fibonacci(uint position)
 		{
-			if (position <= 1) return position;
-			return Fibonacci(position - 1) + Fibonacci(position - 2);
+			return position <= 1 ? position : Fibonacci(position - 1) + Fibonacci(position - 2);
 		}
 
 		static void Main(string[] args)
