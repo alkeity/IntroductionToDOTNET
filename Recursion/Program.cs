@@ -1,6 +1,9 @@
-﻿using System;
+﻿//#define TASK1
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +11,12 @@ namespace Recursion
 {
 	internal class Program
 	{
-		static ulong Factorial(uint number)
+
+		static BigInteger BigFactorial(BigInteger number)
+		{
+			return number <= 1 ? 1 : number * BigFactorial(number - 1);
+		}
+		static ulong Factorial(ulong number)
 		{
 			return number <= 1 ? 1 : number * Factorial(number - 1);
 		}
@@ -45,7 +53,8 @@ namespace Recursion
 
 		static void Main(string[] args)
 		{
-			uint num = 65, power = 15, fiboAmount = 120;
+#if TASK1
+			uint num = 50, power = 15, fiboAmount = 120;
 			ulong fiboLimit = 5000;
 			Console.WriteLine($"Факториал числа {num}: {Factorial(num)}");
 			Console.WriteLine($"{num} в {power} степени: {Power(num, power)}");
@@ -54,7 +63,10 @@ namespace Recursion
 			Fibonacci(fiboLimit, 0, 1);
 			Console.WriteLine($"\nРяд Фибоначчи в количестве {fiboAmount} элементов:");
 			Fibonacci(fiboAmount, 0, 0, 1);
-			Console.WriteLine();
+			Console.WriteLine(); 
+#endif
+			uint num = 200;
+			Console.WriteLine($"Факториал числа {num}: {BigFactorial(num)}");
 		}
 	}
 }
