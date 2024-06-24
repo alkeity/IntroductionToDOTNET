@@ -65,7 +65,7 @@ namespace Recursion
 			Fibonacci(fiboAmount, 0, 0, 1);
 			Console.WriteLine(); 
 #endif
-			uint num = 200;
+			uint num = 12391;
 			Console.WriteLine($"Факториал числа {num}: {BigFactorial(num)}");
 		}
 	}
