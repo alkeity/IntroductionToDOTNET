@@ -126,12 +126,12 @@ namespace Calc
 
 		static char[] GetAllOperationsFromString(string expr)
 		{
-			string[] tempStr = GetAllMatchesFromString<string>(expr, @"[\d\s()][\+*/-][\d\s()-]", Convert.ToString);
-			char[] result = new char[tempStr.Length];
+			MatchCollection matchCollection = Regex.Matches(expr, @"[\d\s()][\+*/-][\d\s()-]");
+			char[] result = new char[matchCollection.Count];
 
-			for (int i = 0; i < tempStr.Length; i++)
+			for (int i = 0; i < matchCollection.Count; i++)
 			{
-				result[i] = tempStr[i][1];
+				result[i] = matchCollection[i].Value[1];
 			}
 			return result;
 		}
