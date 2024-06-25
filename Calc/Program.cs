@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Calc
 {
@@ -43,23 +37,19 @@ namespace Calc
 		public static double CalculateWithBrackets(string expr)
 		{
 			CheckBrackets(expr);
+			Match match;
 			double tempResult;
-			int start, end;
+			Regex ptrn = new Regex(@"\([\d\s\+*\/-]*\)");
 
 			do
 			{
-				end = expr.IndexOf(')');
-				if (end != -1)
+				match = ptrn.Match(expr);
+				if (match.Success)
 				{
-					start = expr.Substring(0, end).LastIndexOf('(');
-					if (start != -1)
-					{
-						tempResult = Calculate(expr.Substring(start + 1, end - start - 1));
-						expr = expr.Remove(start, end - start + 1);
-						expr = expr.Insert(start, Convert.ToString(tempResult));
-					}
+					tempResult = Calculate(match.Value.Substring(1, match.Length - 2));
+					expr = ptrn.Replace(expr, Convert.ToString(tempResult), 1);
 				}
-			} while (end != -1);
+			} while (match.Success);
 
 			return Calculate(expr);
 		}
@@ -142,7 +132,7 @@ namespace Calc
 		static void Main(string[] args)
 		{
 			string expr = "((22 + 33) * (44 - 55) + 88) / 2";
-			Console.WriteLine(Calculator.CalculateWithBrackets(expr));
+			Console.WriteLine(expr + " = " + Calculator.CalculateWithBrackets(expr));
 		}
 	}
 }
