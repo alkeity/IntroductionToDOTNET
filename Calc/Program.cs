@@ -96,7 +96,7 @@ namespace Calc
 
 		static void CheckBrackets(string expr)
 		{
-			if (Regex.Matches(expr, @"\(").Count != Regex.Matches(expr, @"\)").Count)
+			if (expr.Count(item => item == '(') != expr.Count(item => item == ')'))
 			{
 				throw new Exception("Invalid expression");
 			}
