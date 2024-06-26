@@ -39,7 +39,7 @@ namespace Calc
 			CheckBrackets(expr);
 			Match match;
 			double tempResult;
-			Regex ptrn = new Regex(@"\([\d\s\+*\/-]*\)");
+			Regex ptrn = new Regex(@"\([\d\s\.,\+*\/-]*\)");
 
 			do
 			{
@@ -57,7 +57,8 @@ namespace Calc
 		// method for calculating result of a string expression without brackets
 		public static double Calculate(string expr)
 		{
-			double[] nums = GetAllMatchesFromString<double>(expr, @"-?\d+(\.\d+)?", Convert.ToDouble);
+			Console.WriteLine(expr);
+			double[] nums = GetAllMatchesFromString<double>(expr, @"-?\d+(\,\d+)?", Convert.ToDouble);
 			char[] exprOper = GetAllOperationsFromString(expr);
 
 			if (nums.Length != exprOper.Length + 1)
@@ -131,7 +132,7 @@ namespace Calc
 	{
 		static void Main(string[] args)
 		{
-			string expr = "((22 + 33) * (44 - 55) + 88) / 2";
+			string expr = "((22 + 33) * (44 / 55) - 88) / 2";
 			Console.WriteLine(expr + " = " + Calculator.CalculateWithBrackets(expr));
 		}
 	}
