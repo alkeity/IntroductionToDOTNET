@@ -52,33 +52,39 @@ namespace Calc2
 			Main(args); 
 #endif
 			string expression = "(22 + 33 * (44 + 55)) / 5";
-			Console.WriteLine($"Result: {Browse(expression)}");
+			Console.WriteLine($"Result: {Calculate(Browse(expression))}");
 		}
 
 		static string Browse(string complexExpr)
 		{
 			complexExpr = complexExpr.Replace(" ", "");
-			for (int i = 0; i < complexExpr.Length; i++)
+			int start = -1;
+			string subexpr;
+			double result;
+
+			Console.WriteLine("Current expr: " + complexExpr);
+			start = complexExpr.IndexOf('(');
+			if (start != -1)
 			{
-				if (complexExpr[i] == '(')
+				for (int i = start + 1; i < complexExpr.Length; i++)
 				{
-					for (int j = 0; j < complexExpr.Length; j++)
+					if (complexExpr[i] == ')')
 					{
-						if (complexExpr[j] == ')')
-						{
-							//string subexpr = complexExpr.Substring(i, j - i);
-							//double subresult = Calculate(subexpr.Substring(1, subexpr.Length - 2));
-							//complexExpr = complexExpr.Replace(subexpr, subresult.ToString());
-							string subexpr = complexExpr.Substring(i + 1, j - i - 1);
-							double subres = Calculate(subexpr);
-							Console.WriteLine(subexpr + " = " + subres);
-							complexExpr = complexExpr.Replace($"({subexpr})", subres.ToString());
-							break;
-						}
-						else if (complexExpr[j] == '(')
-						{
-							Browse(complexExpr.Substring(i + 1, complexExpr.Length - i - 1));
-						}
+						Console.WriteLine($"Start: {start}, end: {i}");
+						subexpr = complexExpr.Substring(start + 1, i - start - 1);
+						Console.WriteLine("Expr to calculate: " + subexpr);
+						result = Calculate(subexpr);
+						Console.WriteLine(subexpr + " = " + result);
+						complexExpr = complexExpr.Replace($"({subexpr})", result.ToString());
+						break;
+					}
+					else if (complexExpr[i] == '(')
+					{
+						Console.WriteLine("recursion");
+						complexExpr = complexExpr.Replace(
+							complexExpr.Substring(i, complexExpr.Length - i),
+							Browse(complexExpr.Substring(i, complexExpr.Length - i))
+							);
 					}
 				}
 			}
@@ -88,14 +94,13 @@ namespace Calc2
 		static double Calculate(string expression)
 		{
 			expression = expression.Replace(" ", "");
-			Console.WriteLine(expression);
+			Console.WriteLine("Calculating " + expression);
 			string operations = "+-*/";
 			String[] sNums = expression.Split(operations.ToCharArray());
 			double[] dNums = new double[sNums.Length];
 			sNums = sNums.Where(item => item != "").ToArray();
 			for (int i = 0; i < sNums.Length; i++)
 			{
-				Console.WriteLine(sNums[i]);
 				dNums[i] = Convert.ToDouble(sNums[i]);
 				Console.Write(dNums[i] + " ");
 			}
@@ -120,12 +125,12 @@ namespace Calc2
 					if (sOperations[i] == '*') dNums[i] *= dNums[i + 1];
 					else dNums[i] /= dNums[i + 1];
 
-					for (int j = 0; j < dNums.Length; j++)
+					for (int j = i + 1; j < dNums.Length - 1; j++)
 					{
 						dNums[j] = dNums[j + 1];
 					}
 
-					for (int j = 0; j < sOperations.Length; j++)
+					for (int j = i; j < sOperations.Length - 1; j++)
 					{
 						sOperations[j] = sOperations[j + 1];
 					}
