@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recursion", "Recursion\Recu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursionClasswork", "RecursionClasswork\RecursionClasswork.csproj", "{1DDB6F0F-7119-4903-9A5D-166B9E637B99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "TicTacToe\TicTacToe.csproj", "{5EAD57E8-B737-43FF-9C35-F52CC94134A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{1DDB6F0F-7119-4903-9A5D-166B9E637B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DDB6F0F-7119-4903-9A5D-166B9E637B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DDB6F0F-7119-4903-9A5D-166B9E637B99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EAD57E8-B737-43FF-9C35-F52CC94134A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EAD57E8-B737-43FF-9C35-F52CC94134A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EAD57E8-B737-43FF-9C35-F52CC94134A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EAD57E8-B737-43FF-9C35-F52CC94134A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
