@@ -103,17 +103,7 @@ namespace Arrays
 		{
 			for (int i = 0; i < arr.Length; i++)
 			{
-				for (int j = 0; j < arr[i].Length; j++)
-				{
-					try
-					{
-						valueRepeats.Add(arr[i][j], 1);
-					}
-					catch (ArgumentException)
-					{
-						valueRepeats[arr[i][j]]++;
-					}
-				}
+				FindRepeats(arr[i], valueRepeats);
 			}
 		}
 
