@@ -17,8 +17,8 @@ namespace Arrays
 			int[][] jaggedArray = new int[5][];
 
 			FillArray(simpleArray, 30, 131);
-			FillArray(multiArray, -20, 21);
-			FillArray(jaggedArray, 140, 200);
+			FillArray(multiArray, -20, 10);
+			FillArray(jaggedArray, 140, 160);
 
 			PrintArray(simpleArray);
 			Console.WriteLine("Sum: " + ArraySum(simpleArray));
@@ -44,7 +44,25 @@ namespace Arrays
 			PrintArray(smolArray);
 			Dictionary<int, int> reps = new Dictionary<int, int>();
 			FindRepeats(smolArray, reps);
-			Console.WriteLine("Items and repeats:");
+			Console.WriteLine("Items and repeats, simple array:");
+			foreach (KeyValuePair<int, int> pair in reps)
+			{
+				Console.WriteLine($"{pair.Key}: {pair.Value}");
+			}
+			reps.Clear();
+			Console.WriteLine();
+
+			FindRepeats(multiArray, reps);
+			Console.WriteLine("Items and repeats, multidimensional array:");
+			foreach (KeyValuePair<int, int> pair in reps)
+			{
+				Console.WriteLine($"{pair.Key}: {pair.Value}");
+			}
+			reps.Clear();
+			Console.WriteLine();
+
+			FindRepeats(jaggedArray, reps);
+			Console.WriteLine("Items and repeats, jagged array:");
 			foreach (KeyValuePair<int, int> pair in reps)
 			{
 				Console.WriteLine($"{pair.Key}: {pair.Value}");
@@ -62,6 +80,39 @@ namespace Arrays
 				catch (ArgumentException)
 				{
 					valueRepeats[item]++;
+				}
+			}
+		}
+
+		static void FindRepeats(int[,] arr, Dictionary<int, int> valueRepeats)
+		{
+			foreach (int item in arr)
+			{
+				try
+				{
+					valueRepeats.Add(item, 1);
+				}
+				catch (ArgumentException)
+				{
+					valueRepeats[item]++;
+				}
+			}
+		}
+
+		static void FindRepeats(int[][] arr, Dictionary<int, int> valueRepeats)
+		{
+			for (int i = 0; i < arr.Length; i++)
+			{
+				for (int j = 0; j < arr[i].Length; j++)
+				{
+					try
+					{
+						valueRepeats.Add(arr[i][j], 1);
+					}
+					catch (ArgumentException)
+					{
+						valueRepeats[arr[i][j]]++;
+					}
 				}
 			}
 		}
