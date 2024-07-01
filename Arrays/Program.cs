@@ -73,14 +73,8 @@ namespace Arrays
 		{
 			foreach (int item in arr)
 			{
-				try
-				{
-					valueRepeats.Add(item, 1);
-				}
-				catch (ArgumentException)
-				{
-					valueRepeats[item]++;
-				}
+				if (valueRepeats.ContainsKey(item)) valueRepeats[item]++;
+				else valueRepeats.Add(item, 1);
 			}
 		}
 
@@ -88,14 +82,8 @@ namespace Arrays
 		{
 			foreach (int item in arr)
 			{
-				try
-				{
-					valueRepeats.Add(item, 1);
-				}
-				catch (ArgumentException)
-				{
-					valueRepeats[item]++;
-				}
+				if (valueRepeats.ContainsKey(item)) valueRepeats[item]++;
+				else valueRepeats.Add(item, 1);
 			}
 		}
 
