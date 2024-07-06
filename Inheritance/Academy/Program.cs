@@ -1,5 +1,6 @@
 ﻿//#define INHERITANCE_1
 //#define INHERITANCE_2
+//#define CLASSWORK
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Academy
 {
 	internal class Program
 	{
-		static readonly string delimiter = "\n>--------<\n";
+		static readonly string delimiter = "\n>---------------<\n";
 		static void Main(string[] args)
 		{
 #if INHERITANCE_1
@@ -47,6 +48,7 @@ namespace Academy
 
 			Console.WriteLine(delimiter);
 #endif
+#if CLASSWORK
 			Human[] group = new Human[] {
 				new Human("Vercetty", "Tommy", 30),
 				new Student("Pinkman", "Jessie", 22, "Chemistry", "WW_220", 95, 97),
@@ -64,6 +66,51 @@ namespace Academy
 			string cmd = "group.txt";
 
 			System.Diagnostics.Process.Start("notepad", cmd);
+#endif
+		}
+
+		static void Print(string path)
+		{
+			Human[] group = Load(path);
+			Print(group);
+		}
+
+		static void Print(Human[] group)
+		{
+			foreach (Human human in group) { Console.WriteLine(human); }
+		}
+
+		static void Save(Human[] group, string path)
+		{
+			StreamWriter writer = new StreamWriter(path);
+			try
+			{
+				for (int i = 0; i < group.Length; i++)
+				{
+					writer.WriteLine(group[i]);
+				}
+			}
+			finally
+			{
+				writer.Close();
+			}
+		}
+
+		static Human[] Load(string path)
+		{
+			Human[] group = new Human[] { };
+			string temp;
+			StreamReader reader = new StreamReader(path);
+			try
+			{
+				temp = reader.ReadLine();
+				// TODO parce string and add to array
+			}
+			finally
+			{
+				reader.Close();
+			}
+			return group;
 		}
 	}
 }

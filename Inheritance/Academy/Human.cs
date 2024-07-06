@@ -8,6 +8,10 @@ namespace Academy
 {
 	internal class Human
 	{
+		static readonly int LAST_NAME_WIDTH = 15;
+		static readonly int FIRST_NAME_WIDTH = 15;
+		static readonly int AGE_WIDTH = 5;
+
 		string lastName;
 		string firstName;
 		int age;
@@ -52,7 +56,7 @@ namespace Academy
 		}
         public override string ToString()
 		{
-			return base.ToString() + $": {lastName} {firstName} {age}";
+			return $"{GetType()}: ".PadRight(18) + $"{LastName.PadRight(LAST_NAME_WIDTH)} {FirstName.PadRight(FIRST_NAME_WIDTH)} {Age.ToString().PadRight(AGE_WIDTH)}";
 		}
 	}
 }
