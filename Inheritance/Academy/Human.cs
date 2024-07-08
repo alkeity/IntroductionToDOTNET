@@ -54,9 +54,15 @@ namespace Academy
         {
 			Console.WriteLine($"Human dtor: {this.GetHashCode()}");
 		}
+
         public override string ToString()
 		{
-			return $"{GetType()}: ".PadRight(18) + $"{LastName.PadRight(LAST_NAME_WIDTH)} {FirstName.PadRight(FIRST_NAME_WIDTH)} {Age.ToString().PadRight(AGE_WIDTH)}";
+			return $"{GetType().ToString().Split('.').Last()}: ".PadRight(12) + $"{LastName.PadRight(LAST_NAME_WIDTH)} {FirstName.PadRight(FIRST_NAME_WIDTH)} {Age.ToString().PadRight(AGE_WIDTH)}";
+		}
+
+		public virtual string ToFile()
+		{
+			return $"{GetType().ToString().Split('.').Last()}:{LastName},{FirstName},{Age};";
 		}
 	}
 }

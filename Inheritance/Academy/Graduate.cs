@@ -51,5 +51,10 @@ namespace Academy
 		{
 			return base.ToString() + $" {Subject.PadRight(SUBJECT_WIDTH)}";
 		}
+
+		public override string ToFile()
+		{
+			return base.ToFile().Replace(';', ',') + $"{Subject};";
+		}
 	}
 }

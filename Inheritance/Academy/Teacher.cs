@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Academy
@@ -51,6 +52,11 @@ namespace Academy
 		public override string ToString()
 		{
 			return base.ToString() + $"{speciality.PadRight(SPECIALITY_WIDTH)}{experience.ToString().PadRight(EXPERIENCE_WIDTH)}";
+		}
+
+		public override string ToFile()
+		{
+			return base.ToFile().Replace(';', ',') + $"{Speciality},{Experience};";
 		}
 	}
 }

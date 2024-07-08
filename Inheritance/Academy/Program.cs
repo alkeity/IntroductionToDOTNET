@@ -1,6 +1,7 @@
 ﻿//#define INHERITANCE_1
 //#define INHERITANCE_2
-//#define CLASSWORK
+#define CLASSWORK
+//#define HOMEWORK
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,16 +62,18 @@ namespace Academy
 
 			for (int i = 0; i < group.Length; i++)
 			{
-				writer.WriteLine(group[i]);
+				writer.WriteLine(group[i].ToFile());
 			}
 			writer.Close();
-			string cmd = "group.txt";
+			string cmd = "group.csv";
 
 			System.Diagnostics.Process.Start("notepad", cmd);
 #endif
+#if HOMEWORK
 			string cmd = "group.txt";
 			Human[] group = Load(cmd);
 			Print(group);
+#endif
 		}
 
 		static void Print(string path)
@@ -123,18 +126,18 @@ namespace Academy
 		{
 			Regex ptrn = new Regex(@"\w+( \w+)*");
 			MatchCollection temp = ptrn.Matches(input);
-			Human tempHuman = new Human(temp[2].Value, temp[3].Value, Convert.ToInt32(temp[4].Value));
+			Human tempHuman = new Human(temp[1].Value, temp[2].Value, Convert.ToInt32(temp[3].Value));
 
-			switch (temp[1].Value)
+			switch (temp[0].Value)
 			{
 				case "Human":
 					return tempHuman;
 				case "Teacher":
-					return new Teacher(tempHuman, temp[5].Value, Convert.ToInt32(temp[6].Value));
+					return new Teacher(tempHuman, temp[4].Value, Convert.ToInt32(temp[5].Value));
 				case "Student":
-					return new Student(tempHuman, temp[5].Value, temp[6].Value, Convert.ToInt32(temp[7].Value), Convert.ToInt32(temp[8].Value));
+					return new Student(tempHuman, temp[4].Value, temp[5].Value, Convert.ToInt32(temp[6].Value), Convert.ToInt32(temp[7].Value));
 				case "Graduate":
-					return new Graduate(tempHuman, temp[5].Value, temp[6].Value, Convert.ToInt32(temp[7].Value), Convert.ToInt32(temp[8].Value), temp[9].Value);
+					return new Graduate(tempHuman, temp[4].Value, temp[5].Value, Convert.ToInt32(temp[6].Value), Convert.ToInt32(temp[7].Value), temp[8].Value);
 				default:
 					throw new Exception("Incorrect string");
 			}
