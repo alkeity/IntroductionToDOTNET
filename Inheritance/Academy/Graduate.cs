@@ -9,6 +9,7 @@ namespace Academy
 {
 	internal class Graduate : Student
 	{
+		static readonly int SUBJECT_WIDTH = 8;
 		string subject;
 
 		public string Subject
@@ -28,6 +29,14 @@ namespace Academy
 			Console.WriteLine($"Graduate ctor: {this.GetHashCode()}");
 		}
 
+		public Graduate(Human human,
+			string speciality, string group,
+			double rating, double attendance,
+			string subject) :base(human, speciality, group, rating, attendance)
+		{
+			Subject = subject;
+		}
+
 		public Graduate(Student student, string subject) : base(student)
 		{
 			Subject = subject;
@@ -40,7 +49,7 @@ namespace Academy
 
 		public override string ToString()
 		{
-			return base.ToString() + $" {subject}";
+			return base.ToString() + $" {Subject.PadRight(SUBJECT_WIDTH)}";
 		}
 	}
 }

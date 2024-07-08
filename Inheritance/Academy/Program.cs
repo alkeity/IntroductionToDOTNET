@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Academy
 {
@@ -67,6 +68,9 @@ namespace Academy
 
 			System.Diagnostics.Process.Start("notepad", cmd);
 #endif
+			string cmd = "group.txt";
+			Human[] group = Load(cmd);
+			Print(group);
 		}
 
 		static void Print(string path)
@@ -77,7 +81,10 @@ namespace Academy
 
 		static void Print(Human[] group)
 		{
-			foreach (Human human in group) { Console.WriteLine(human); }
+			for (int i = 0; i < group.Length; i++)
+			{
+				Console.WriteLine(group[i].ToString());
+			}
 		}
 
 		static void Save(Human[] group, string path)
@@ -98,19 +105,49 @@ namespace Academy
 
 		static Human[] Load(string path)
 		{
-			Human[] group = new Human[] { };
 			string temp;
-			StreamReader reader = new StreamReader(path);
-			try
+			int length = CountLines(path);
+			Human[] group = new Human[length];
+			using (StreamReader reader = new StreamReader(path))
 			{
-				temp = reader.ReadLine();
-				// TODO parce string and add to array
-			}
-			finally
-			{
-				reader.Close();
+				for (int i = 0; i < length; i++)
+				{
+					temp = reader.ReadLine();
+					group[i] = ParseString(temp);
+				}
 			}
 			return group;
+		}
+
+		static Human ParseString(string input)
+		{
+			Regex ptrn = new Regex(@"\w+( \w+)*");
+			MatchCollection temp = ptrn.Matches(input);
+			Human tempHuman = new Human(temp[2].Value, temp[3].Value, Convert.ToInt32(temp[4].Value));
+
+			switch (temp[1].Value)
+			{
+				case "Human":
+					return tempHuman;
+				case "Teacher":
+					return new Teacher(tempHuman, temp[5].Value, Convert.ToInt32(temp[6].Value));
+				case "Student":
+					return new Student(tempHuman, temp[5].Value, temp[6].Value, Convert.ToInt32(temp[7].Value), Convert.ToInt32(temp[8].Value));
+				case "Graduate":
+					return new Graduate(tempHuman, temp[5].Value, temp[6].Value, Convert.ToInt32(temp[7].Value), Convert.ToInt32(temp[8].Value), temp[9].Value);
+				default:
+					throw new Exception("Incorrect string");
+			}
+		}
+
+		static int CountLines(string path)
+		{
+			int count = 0;
+			using (StreamReader reader = new StreamReader(path))
+			{
+				while (reader.ReadLine() != null) { count++; }
+			}
+			return count;
 		}
 	}
 }
