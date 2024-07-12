@@ -50,12 +50,12 @@ namespace AbstractShapes
 
 		public override void Draw(PaintEventArgs e)
 		{
-			e.Graphics.DrawRectangle(new Pen(Color), StartX, StartY, (float)Width, (float)Height);
+			e.Graphics.DrawRectangle(new Pen(Color, LineWidth), StartX, StartY, (float)Width, (float)Height);
 		}
 
 		public override string ToString()
 		{
-			string result = "";
+			string result = "Rectangle\n";
 			result += $"Width: {Width}\nHeight: {Height}\n";
 			result += base.ToString();
 			return result;

@@ -40,12 +40,12 @@ namespace AbstractShapes
 
 		public override void Draw(PaintEventArgs e)
 		{
-			e.Graphics.DrawRectangle(new Pen(Color), StartX, StartY, (float)Side, (float)Side);
+			e.Graphics.DrawRectangle(new Pen(Color, LineWidth), StartX, StartY, (float)Side, (float)Side);
 		}
 
 		public override string ToString()
 		{
-			string result = "";
+			string result = "Square\n";
 			result += $"Side: {Side}\n";
 			result += base.ToString();
 			return result;

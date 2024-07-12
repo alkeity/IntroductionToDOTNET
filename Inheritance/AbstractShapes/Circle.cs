@@ -49,8 +49,8 @@ namespace AbstractShapes
 
 		public override string ToString()
 		{
-			string result = "";
-			result += $"Radius: {Radius}\nDiameter: {GetDiameter()}";
+			string result = "Circle\n";
+			result += $"Radius: {Radius}\nDiameter: {GetDiameter()}\n";
 			result += base.ToString();
 			return result;
 		}
