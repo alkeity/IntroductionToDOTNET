@@ -23,6 +23,9 @@ namespace AbstractShapes
 
 			Square square = new Square(110, 400, 100, 8, Color.BlueViolet);
 			square.Info(e);
+
+			Circle circle = new Circle(90, 500, 200, 10, Color.Crimson);
+			circle.Info(e);
 		}
 		[DllImport("kernel32.dll")]
 		public static extern bool GetStdHandle(int nStdHandle);
