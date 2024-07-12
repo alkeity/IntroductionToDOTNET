@@ -56,7 +56,7 @@ namespace AbstractShapes
 		public override string ToString()
 		{
 			string result = "";
-			result += $"Windth: {Width}\nHeight: {Height}\n";
+			result += $"Width: {Width}\nHeight: {Height}\n";
 			result += base.ToString();
 			return result;
 		}
