@@ -18,8 +18,11 @@ namespace AbstractShapes
 			System.Drawing.Rectangle windowRectangle = new System.Drawing.Rectangle(Console.WindowLeft, Console.WindowTop, Console.WindowWidth, Console.WindowHeight);
 			PaintEventArgs e = new PaintEventArgs(graphics, windowRectangle);
 
-			Rectangle rectangle = new Rectangle(100, 80, 200, 100, 7, Color.Azure);
+			Rectangle rectangle = new Rectangle(100, 80, 450, 50, 7, Color.Azure);
 			rectangle.Info(e);
+
+			Square square = new Square(110, 400, 100, 8, Color.BlueViolet);
+			square.Info(e);
 		}
 		[DllImport("kernel32.dll")]
 		public static extern bool GetStdHandle(int nStdHandle);
