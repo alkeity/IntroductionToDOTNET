@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define ABSTRACT_CHECK
+#define INTERFACE_CHECK
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,7 @@ namespace AbstractShapes
 			System.Drawing.Rectangle windowRectangle = new System.Drawing.Rectangle(Console.WindowLeft, Console.WindowTop, Console.WindowWidth, Console.WindowHeight);
 			PaintEventArgs e = new PaintEventArgs(graphics, windowRectangle);
 
+#if ABSTRACT_CHECK
 			Rectangle rectangle = new Rectangle(100, 80, 450, 50, 7, Color.CornflowerBlue);
 			rectangle.Info(e);
 
@@ -35,7 +38,26 @@ namespace AbstractShapes
 
 			TriangleEquilateral triangle3 = new TriangleEquilateral(130, 600, 200, 10, Color.Turquoise);
 			triangle3.Info(e);
+#endif
+
+#if INTERFACE_CHECK
+			Shape[] shapes = new Shape[]
+			{
+				new Square(110, 400, 100, 8, Color.BlueViolet),
+				new Rectangle(100, 80, 450, 50, 7, Color.CornflowerBlue),
+				new Circle(90, 500, 200, 10, Color.Crimson)
+			};
+
+			foreach (Shape item in shapes)
+			{
+				if (item is IHaveDiagonal)
+				{
+					item.Info(e);
+				}
+			}
+#endif
 		}
+
 		[DllImport("kernel32.dll")]
 		public static extern bool GetStdHandle(int nStdHandle);
 		[DllImport("kernel32.dll")]

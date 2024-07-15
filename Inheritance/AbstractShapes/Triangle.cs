@@ -80,7 +80,7 @@ namespace AbstractShapes
 		public override string ToString()
 		{
 			string result = "Degenerate: ";
-			result += IsDegenerate() ? "Yes" : "No";
+			result += IsDegenerate() ? "Yes\n" : "No\n";
 			if (!IsDegenerate())
 			{
 				result += base.ToString();

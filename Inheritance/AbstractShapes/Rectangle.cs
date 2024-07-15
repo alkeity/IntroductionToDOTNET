@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AbstractShapes
 {
-	class Rectangle : Shape
+	class Rectangle : Shape, IHaveDiagonal
 	{
 		double width;
 		double height;
@@ -36,6 +36,11 @@ namespace AbstractShapes
 		{
 			Width = width;
 			Height = height;
+		}
+
+		public double GetDiagonal()
+		{
+			return Math.Sqrt(Width * Width + Height * Height);
 		}
 
 		public override double GetArea()
