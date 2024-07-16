@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AbstractShapes
 {
-	abstract class Triangle : Shape
+	abstract class Triangle : Shape, IHaveHeight
 	{
 		double sideA; // base
 		double sideB;
@@ -56,7 +56,7 @@ namespace AbstractShapes
 				sideB + sideC < sideA;
 		}
 
-		protected double GetHeightFromSideA()
+		public double GetHeight()
         {
             return IsDegenerate() ? 0 : (2 * GetArea()) / sideA;
         }
@@ -128,8 +128,8 @@ namespace AbstractShapes
 			points[0] = new PointF(StartX, StartY);
 			points[1] = new PointF((float)(StartX + SideA), StartY);
 			points[2] = new PointF(
-				(float)(StartX + Math.Sqrt(SideB * SideB + GetHeightFromSideA() * GetHeightFromSideA())),
-				(float)(StartY - GetHeightFromSideA())
+				(float)(StartX + Math.Sqrt(SideB * SideB + GetHeight() * GetHeight())),
+				(float)(StartY - GetHeight())
 				);
 			return points;
 		}
