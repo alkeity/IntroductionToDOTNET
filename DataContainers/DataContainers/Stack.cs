@@ -46,6 +46,10 @@ namespace DataContainers
 
 		public BaseNode<T> GetElement()
 		{
+			if (head == null)
+			{
+				throw new Exception("Stack is empty");
+			}
 			BaseNode<T> temp = Head;
 			RemoveElement();
 			return temp;
