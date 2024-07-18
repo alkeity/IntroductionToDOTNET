@@ -117,7 +117,7 @@ namespace BinaryTree
 
 		public int Count()
 		{
-			if (this.root == null) throw new ArgumentNullException("Tree is empty");
+			if (this.root == null) return 0;
 			return Count(root);
 		}
 
