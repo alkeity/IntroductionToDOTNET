@@ -17,9 +17,9 @@ namespace BinaryTree
 
 			for (int i = 0; i < n; i++)
 			{
-				tree.Insert(rand.Next(100), tree.root);
+				tree.Insert(rand.Next(100));
 			}
-			tree.Print(tree.root);
+			tree.Print();
 		}
 	}
 }

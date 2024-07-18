@@ -10,9 +10,27 @@ namespace BinaryTree
 	{
 		public class Element
 		{
-			public int data;
-			public Element pLeft;
-			public Element pRight;
+			int data;
+			Element pLeft;
+			Element pRight;
+
+			public int Data
+			{
+				get => data;
+				set { data = value; }
+			}
+
+			public Element PLeft
+			{
+				get => pLeft;
+				set { pLeft = value; }
+			}
+
+			public Element PRight
+			{
+				get => pRight;
+				set { pRight = value; }
+			}
 
 			public Element(int data, Element pLeft = null, Element pRight = null)
 			{
@@ -27,7 +45,7 @@ namespace BinaryTree
 				Console.WriteLine($"Elem dtor: {GetHashCode()}");
 			}
 		}
-		public Element root;
+		Element root;
 
         public Tree()
         {
@@ -39,28 +57,74 @@ namespace BinaryTree
 			Console.WriteLine($"Tree dtor: {GetHashCode()}");
 		}
 
-		public void Insert(int data, Element root)
+		public void Insert(int data)
+		{
+			Insert(data, this.root);
+		}
+
+		void Insert(int data, Element root)
 		{
 			if (this.root == null) this.root = new Element(data);
 			if (root == null) return;
-			if (data < root.data)
+			if (data < root.Data)
 			{
-				if (root.pLeft == null) root.pLeft = new Element(data);
-				else Insert(data, root.pLeft);
+				if (root.PLeft == null) root.PLeft = new Element(data);
+				else Insert(data, root.PLeft);
 			}
 			else
 			{
-				if (root.pRight == null) root.pRight = new Element(data);
-				else Insert(data, root.pRight);
+				if (root.PRight == null) root.PRight = new Element(data);
+				else Insert(data, root.PRight);
 			}
 		}
 
-		public void Print(Element root)
+		public void Print()
+		{
+			Print(this.root);
+		}
+
+		void Print(Element root)
 		{
 			if (root == null) return;
-			Print(root.pLeft);
-			Console.WriteLine(root.data + " ");
-			Print(root.pRight);
+			Print(root.PLeft);
+			Console.WriteLine(root.Data + " ");
+			Print(root.PRight);
+		}
+
+		public int MinValue()
+		{
+			if (this.root == null) throw new ArgumentNullException("Tree is empty");
+			throw new NotImplementedException();
+		}
+
+		int MinValue(Element root)
+		{
+			if (this.root == null) throw new ArgumentNullException("Tree is empty");
+			throw new NotImplementedException();
+		}
+
+		public int MaxValue()
+		{
+			if (this.root == null) throw new ArgumentNullException("Tree is empty");
+			throw new NotImplementedException();
+		}
+
+		public int Count()
+		{
+			if (this.root == null) throw new ArgumentNullException("Tree is empty");
+			throw new NotImplementedException();
+		}
+
+		public int Sum()
+		{
+			if (this.root == null) throw new ArgumentNullException("Tree is empty");
+			throw new NotImplementedException();
+		}
+
+		public int Avg()
+		{
+			if (this.root == null) throw new ArgumentNullException("Tree is empty");
+			throw new NotImplementedException();
 		}
 	}
 }
