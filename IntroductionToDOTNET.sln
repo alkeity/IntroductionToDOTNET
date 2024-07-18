@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataContainers", "DataConta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContainers", "DataContainers\DataContainers\DataContainers.csproj", "{D3B81AC1-EEC4-45F6-A492-2C64C7AF1D20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTree", "DataContainers\BinaryTree\BinaryTree.csproj", "{C6A2F51C-0701-433C-B2BA-D954F75AB374}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,10 @@ Global
 		{D3B81AC1-EEC4-45F6-A492-2C64C7AF1D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3B81AC1-EEC4-45F6-A492-2C64C7AF1D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3B81AC1-EEC4-45F6-A492-2C64C7AF1D20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6A2F51C-0701-433C-B2BA-D954F75AB374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6A2F51C-0701-433C-B2BA-D954F75AB374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6A2F51C-0701-433C-B2BA-D954F75AB374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6A2F51C-0701-433C-B2BA-D954F75AB374}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +147,7 @@ Global
 		{B5401F25-13F7-4EE2-B222-083E3660578B} = {ED07851A-FAA1-4D89-9782-A42A5B182A1E}
 		{4B9D7DC1-547F-4BA6-92D4-4BF3CBC67491} = {ED07851A-FAA1-4D89-9782-A42A5B182A1E}
 		{D3B81AC1-EEC4-45F6-A492-2C64C7AF1D20} = {D14ACF4A-87D9-4592-911C-EF731E7D89F2}
+		{C6A2F51C-0701-433C-B2BA-D954F75AB374} = {D14ACF4A-87D9-4592-911C-EF731E7D89F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3684F0A8-D7EE-416F-BC36-7FBA2D954696}
