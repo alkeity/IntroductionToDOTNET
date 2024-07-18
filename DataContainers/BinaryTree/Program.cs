@@ -20,6 +20,12 @@ namespace BinaryTree
 				tree.Insert(rand.Next(100));
 			}
 			tree.Print();
+
+			Console.WriteLine("MinValue:" + tree.MinValue());
+			Console.WriteLine("MaxValue:" + tree.MaxValue());
+			Console.WriteLine("Count:" + tree.Count());
+			Console.WriteLine("Sum:" + tree.Sum());
+			Console.WriteLine("Avg:" + tree.Avg());
 		}
 	}
 }

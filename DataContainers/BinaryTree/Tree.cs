@@ -94,37 +94,69 @@ namespace BinaryTree
 		public int MinValue()
 		{
 			if (this.root == null) throw new ArgumentNullException("Tree is empty");
-			throw new NotImplementedException();
+			return MinValue(root);
 		}
 
 		int MinValue(Element root)
 		{
-			if (this.root == null) throw new ArgumentNullException("Tree is empty");
-			throw new NotImplementedException();
+			if (root.PLeft == null) return root.Data;
+			return MinValue(root.PLeft);
 		}
 
 		public int MaxValue()
 		{
 			if (this.root == null) throw new ArgumentNullException("Tree is empty");
-			throw new NotImplementedException();
+			return MaxValue(root);
+		}
+
+		int MaxValue(Element root)
+		{
+			if (root.PRight == null) return root.Data;
+			return MaxValue(root.PRight);
 		}
 
 		public int Count()
 		{
 			if (this.root == null) throw new ArgumentNullException("Tree is empty");
-			throw new NotImplementedException();
+			return Count(root);
+		}
+
+		int Count(Element root)
+		{
+			int result = 0;
+			if (root != null)
+			{
+				result++;
+				result += Count(root.PLeft);
+				result += Count(root.PRight);
+			}
+			return result;
 		}
 
 		public int Sum()
 		{
 			if (this.root == null) throw new ArgumentNullException("Tree is empty");
-			throw new NotImplementedException();
+			return Sum(root);
 		}
 
-		public int Avg()
+		int Sum(Element root)
+		{
+			int result = 0;
+			if (root != null)
+			{
+				result += root.Data;
+				result += Sum(root.PLeft);
+				result += Sum(root.PRight);
+			}
+			return result;
+		}
+
+		public double Avg()
 		{
 			if (this.root == null) throw new ArgumentNullException("Tree is empty");
-			throw new NotImplementedException();
+			int sum = Sum(root);
+			int count = Count(root);
+			return (double)sum / count;
 		}
 	}
 }
