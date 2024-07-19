@@ -37,24 +37,24 @@ namespace BinaryTree
 				this.data = data;
 				this.pLeft = pLeft;
 				this.pRight = pRight;
-				Console.WriteLine($"Elem ctor: {GetHashCode()}");
+				//Console.WriteLine($"Elem ctor: {GetHashCode()}");
 			}
 
 			~Element()
 			{
-				Console.WriteLine($"Elem dtor: {GetHashCode()}");
+				//Console.WriteLine($"Elem dtor: {GetHashCode()}");
 			}
 		}
-		Element root;
+		protected Element root;
 
         public Tree()
         {
-			Console.WriteLine($"Tree ctor: {GetHashCode()}");
+			//Console.WriteLine($"Tree ctor: {GetHashCode()}");
         }
 
 		~Tree()
 		{
-			Console.WriteLine($"Tree dtor: {GetHashCode()}");
+			//Console.WriteLine($"Tree dtor: {GetHashCode()}");
 		}
 
 		public void Insert(int data)
@@ -62,7 +62,7 @@ namespace BinaryTree
 			Insert(data, this.root);
 		}
 
-		void Insert(int data, Element root)
+		protected virtual void Insert(int data, Element root)
 		{
 			if (this.root == null) this.root = new Element(data);
 			if (root == null) return;
@@ -81,13 +81,14 @@ namespace BinaryTree
 		public void Print()
 		{
 			Print(this.root);
+			Console.WriteLine();
 		}
 
 		void Print(Element root)
 		{
 			if (root == null) return;
 			Print(root.PLeft);
-			Console.WriteLine(root.Data + " ");
+			Console.Write(root.Data + " ");
 			Print(root.PRight);
 		}
 
@@ -99,8 +100,9 @@ namespace BinaryTree
 
 		int MinValue(Element root)
 		{
-			if (root.PLeft == null) return root.Data;
-			return MinValue(root.PLeft);
+			return root.PLeft == null ? root.Data : MinValue(root.PLeft);
+			//if (root.PLeft == null) return root.Data;
+			//return MinValue(root.PLeft);
 		}
 
 		public int MaxValue()
@@ -111,8 +113,9 @@ namespace BinaryTree
 
 		int MaxValue(Element root)
 		{
-			if (root.PRight == null) return root.Data;
-			return MaxValue(root.PRight);
+			return root.PLeft == null ? root.Data : MaxValue(root.PLeft);
+			//if (root.PRight == null) return root.Data; 
+			//return MaxValue(root.PRight);
 		}
 
 		public int Count()
@@ -157,6 +160,25 @@ namespace BinaryTree
 			int sum = Sum(root);
 			int count = Count(root);
 			return (double)sum / count;
+		}
+	}
+
+	class UniqueTree : Tree
+	{
+		protected override void Insert(int data, Element root)
+		{
+			if (this.root == null) this.root = new Element(data);
+			if (root == null) return;
+			if (data < root.Data)
+			{
+				if (root.PLeft == null) root.PLeft = new Element(data);
+				else Insert(data, root.PLeft);
+			}
+			else if (data > root.Data)
+			{
+				if (root.PRight == null) root.PRight = new Element(data);
+				else Insert(data, root.PRight);
+			}
 		}
 	}
 }

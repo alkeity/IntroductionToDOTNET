@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define TREE_BASE_CHECK
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace BinaryTree
 		static void Main(string[] args)
 		{
 			Random rand = new Random();
+#if TREE_BASE_CHECK
 			Console.Write("Введите размер дерева: ");
 			int n = Convert.ToInt32(Console.ReadLine());
 			Tree tree = new Tree();
@@ -26,6 +28,16 @@ namespace BinaryTree
 			Console.WriteLine("Count:" + tree.Count());
 			Console.WriteLine("Sum:" + tree.Sum());
 			Console.WriteLine("Avg:" + tree.Avg());
+
+			UniqueTree uTree = new UniqueTree();
+
+			for (int i = 0; i < n; i++)
+			{
+				uTree.Insert(rand.Next(100));
+			}
+			uTree.Print(); 
+#endif
+			//Tree tree = new Tree() { 3, 5, 8, 13, 21 };
 		}
 	}
 }
