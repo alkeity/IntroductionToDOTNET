@@ -38,6 +38,9 @@ namespace BinaryTree
 			tree.Print();
 			Console.WriteLine(delimiter);
 
+			tree.Clear();
+			tree.Print();
+
 			//UniqueTree uTree = new UniqueTree();
 
 			//for (int i = 0; i < n; i++)

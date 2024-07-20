@@ -61,7 +61,7 @@ namespace BinaryTree
 
 		~Tree()
 		{
-			Clear(root);
+			if (root != null) Clear();
 #if DEBUG
 			Console.WriteLine($"Tree dtor: {GetHashCode()}");
 #endif
@@ -170,15 +170,20 @@ namespace BinaryTree
 
 		public void Clear()
 		{
-			Clear(root);
+			root = Clear(root);
 		}
 
-		void Clear(Element root)
+		Element Clear(Element root)
 		{
-			if (root == null) return;
-			Clear(root.PLeft);
-			Clear(root.PRight);
-			root = null;
+			if (root.PLeft != null)
+			{
+				root.PLeft = Clear(root.PLeft);
+			}
+			if (root.PRight != null)
+			{
+				root.PRight = Clear(root.PRight);
+			}
+			return null;
 		}
 
 		public Element Erase(int data)
@@ -207,6 +212,16 @@ namespace BinaryTree
 				root.PRight = Erase(root.Data, root.PRight);
 			}
 			return root;
+		}
+
+		public int Depth()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void TreePrint()
+		{
+			throw new NotImplementedException();
 		}
 	}
 
