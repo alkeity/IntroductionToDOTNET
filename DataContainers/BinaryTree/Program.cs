@@ -9,6 +9,7 @@ namespace BinaryTree
 {
 	internal class Program
 	{
+		static readonly string delimiter = "\n-----------------------------\n";
 		static void Main(string[] args)
 		{
 			Random rand = new Random();
@@ -21,21 +22,29 @@ namespace BinaryTree
 			{
 				tree.Insert(rand.Next(100));
 			}
-			tree.Print();
 
+			Console.WriteLine(delimiter);
+			tree.Print();
 			Console.WriteLine("MinValue:" + tree.MinValue());
 			Console.WriteLine("MaxValue:" + tree.MaxValue());
 			Console.WriteLine("Count:" + tree.Count());
 			Console.WriteLine("Sum:" + tree.Sum());
 			Console.WriteLine("Avg:" + tree.Avg());
+			Console.WriteLine(delimiter);
 
-			UniqueTree uTree = new UniqueTree();
+			Console.WriteLine("Value to delete: ");
+			int val = Convert.ToInt32(Console.ReadLine());
+			tree.Erase(val);
+			tree.Print();
+			Console.WriteLine(delimiter);
 
-			for (int i = 0; i < n; i++)
-			{
-				uTree.Insert(rand.Next(100));
-			}
-			uTree.Print(); 
+			//UniqueTree uTree = new UniqueTree();
+
+			//for (int i = 0; i < n; i++)
+			//{
+			//	uTree.Insert(rand.Next(100));
+			//}
+			//uTree.Print(); 
 #endif
 			//Tree tree = new Tree() { 3, 5, 8, 13, 21 };
 		}

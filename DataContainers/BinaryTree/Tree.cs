@@ -1,4 +1,5 @@
-﻿using System;
+﻿#undef DEBUG
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,24 +38,33 @@ namespace BinaryTree
 				this.data = data;
 				this.pLeft = pLeft;
 				this.pRight = pRight;
-				//Console.WriteLine($"Elem ctor: {GetHashCode()}");
+#if DEBUG
+				Console.WriteLine($"Elem ctor: {GetHashCode()}");
+#endif
 			}
 
 			~Element()
 			{
-				//Console.WriteLine($"Elem dtor: {GetHashCode()}");
+#if DEBUG
+				Console.WriteLine($"Elem dtor: {GetHashCode()}");
+#endif
 			}
 		}
 		protected Element root;
 
         public Tree()
         {
-			//Console.WriteLine($"Tree ctor: {GetHashCode()}");
-        }
+#if DEBUG
+			Console.WriteLine($"Tree ctor: {GetHashCode()}");
+#endif
+		}
 
 		~Tree()
 		{
-			//Console.WriteLine($"Tree dtor: {GetHashCode()}");
+			Clear(root);
+#if DEBUG
+			Console.WriteLine($"Tree dtor: {GetHashCode()}");
+#endif
 		}
 
 		public void Insert(int data)
@@ -101,8 +111,6 @@ namespace BinaryTree
 		int MinValue(Element root)
 		{
 			return root.PLeft == null ? root.Data : MinValue(root.PLeft);
-			//if (root.PLeft == null) return root.Data;
-			//return MinValue(root.PLeft);
 		}
 
 		public int MaxValue()
@@ -113,9 +121,7 @@ namespace BinaryTree
 
 		int MaxValue(Element root)
 		{
-			return root.PLeft == null ? root.Data : MaxValue(root.PLeft);
-			//if (root.PRight == null) return root.Data; 
-			//return MaxValue(root.PRight);
+			return root.PRight == null ? root.Data : MaxValue(root.PRight);
 		}
 
 		public int Count()
@@ -160,6 +166,47 @@ namespace BinaryTree
 			int sum = Sum(root);
 			int count = Count(root);
 			return (double)sum / count;
+		}
+
+		public void Clear()
+		{
+			Clear(root);
+		}
+
+		void Clear(Element root)
+		{
+			if (root == null) return;
+			Clear(root.PLeft);
+			Clear(root.PRight);
+			root = null;
+		}
+
+		public Element Erase(int data)
+		{
+			return Erase(data, root);
+		}
+
+		Element Erase(int data, Element root) // TODO element exist check
+		{
+			if (root.Data > data)
+			{
+				root.PLeft = Erase(data, root.PLeft);
+			}
+			else if (root.Data < data)
+			{
+				root.PRight = Erase(data, root.PRight);
+			}
+			else
+			{
+				// if element has only one child
+				if (root.PLeft == null) return root.PRight;
+				else if (root.PRight == null) return root.PLeft;
+
+				// element with 2 children - replace root data with smallest value in right and then delete that elem
+				root.Data = MinValue(root.PRight);
+				root.PRight = Erase(root.Data, root.PRight);
+			}
+			return root;
 		}
 	}
 
