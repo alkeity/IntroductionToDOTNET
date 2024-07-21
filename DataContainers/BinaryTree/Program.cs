@@ -25,11 +25,12 @@ namespace BinaryTree
 
 			Console.WriteLine(delimiter);
 			tree.Print();
-			Console.WriteLine("MinValue:" + tree.MinValue());
-			Console.WriteLine("MaxValue:" + tree.MaxValue());
-			Console.WriteLine("Count:" + tree.Count());
-			Console.WriteLine("Sum:" + tree.Sum());
-			Console.WriteLine("Avg:" + tree.Avg());
+			Console.WriteLine("MinValue: " + tree.MinValue());
+			Console.WriteLine("MaxValue: " + tree.MaxValue());
+			Console.WriteLine("Count: " + tree.Count());
+			Console.WriteLine("Sum: " + tree.Sum());
+			Console.WriteLine("Avg: " + tree.Avg());
+			Console.WriteLine("Height: " + tree.Height());
 			Console.WriteLine(delimiter);
 
 			Console.WriteLine("Value to delete: ");
@@ -39,7 +40,9 @@ namespace BinaryTree
 			Console.WriteLine(delimiter);
 
 			tree.Clear();
+			Console.WriteLine("Tree clear. Print:");
 			tree.Print();
+			Console.WriteLine(delimiter);
 
 			//UniqueTree uTree = new UniqueTree();
 

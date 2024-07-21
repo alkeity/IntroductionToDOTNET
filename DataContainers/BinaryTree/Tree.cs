@@ -1,4 +1,4 @@
-﻿#undef DEBUG
+﻿//#undef DEBUG
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -214,9 +214,17 @@ namespace BinaryTree
 			return root;
 		}
 
-		public int Depth()
+		public int Height()
 		{
-			throw new NotImplementedException();
+			return Depth(root);
+		}
+
+		int Depth(Element root)
+		{
+			if (root == null) return 0;
+			int depthLeft = Depth(root.PLeft);
+			int depthRight = Depth(root.PRight);
+			return depthLeft > depthRight ? depthLeft + 1 : depthRight + 1;
 		}
 
 		public void TreePrint()
