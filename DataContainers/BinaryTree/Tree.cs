@@ -1,4 +1,4 @@
-﻿//#undef DEBUG
+﻿#undef DEBUG
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -175,14 +175,8 @@ namespace BinaryTree
 
 		Element Clear(Element root)
 		{
-			if (root.PLeft != null)
-			{
-				root.PLeft = Clear(root.PLeft);
-			}
-			if (root.PRight != null)
-			{
-				root.PRight = Clear(root.PRight);
-			}
+			if (root.PLeft != null) root.PLeft = Clear(root.PLeft);
+			if (root.PRight != null) root.PRight = Clear(root.PRight);
 			return null;
 		}
 
@@ -193,14 +187,8 @@ namespace BinaryTree
 
 		Element Erase(int data, Element root) // TODO element exist check
 		{
-			if (root.Data > data)
-			{
-				root.PLeft = Erase(data, root.PLeft);
-			}
-			else if (root.Data < data)
-			{
-				root.PRight = Erase(data, root.PRight);
-			}
+			if (root.Data > data) root.PLeft = Erase(data, root.PLeft);
+			else if (root.Data < data) root.PRight = Erase(data, root.PRight);
 			else
 			{
 				// if element has only one child
