@@ -1,6 +1,8 @@
-﻿#define TREE_BASE_CHECK
+﻿//#define TREE_BASE_CHECK
+#define INITIALIZER_CHECK
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +15,9 @@ namespace BinaryTree
 		static void Main(string[] args)
 		{
 			Random rand = new Random();
-#if TREE_BASE_CHECK
 			Console.Write("Введите размер дерева: ");
 			int n = Convert.ToInt32(Console.ReadLine());
+#if TREE_BASE_CHECK
 			Tree tree = new Tree();
 
 			for (int i = 0; i < n; i++)
@@ -43,16 +45,51 @@ namespace BinaryTree
 			Console.WriteLine("Tree clear. Print:");
 			tree.Print();
 			Console.WriteLine(delimiter);
-
-			//UniqueTree uTree = new UniqueTree();
-
-			//for (int i = 0; i < n; i++)
-			//{
-			//	uTree.Insert(rand.Next(100));
-			//}
-			//uTree.Print(); 
 #endif
-			//Tree tree = new Tree() { 3, 5, 8, 13, 21 };
+#if INITIALIZER_CHECK
+			try
+			{
+				UniqueTree uTree = new UniqueTree() { 13, 25, 17, 100, 56 };
+
+				//for (int i = 0; i < n; i++)
+				//{
+				//	uTree.Insert(rand.Next(100));
+				//}
+				uTree.Print();
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+#endif
+			Tree tree = new Tree();
+
+			for (int i = 0; i < n; i++)
+			{
+				tree.Insert(rand.Next(100));
+			}
+			Console.WriteLine(delimiter);
+
+			//tree.Print();
+			#region NoDelegatePerformanceCheck
+			Stopwatch sw = new Stopwatch();
+			Console.WriteLine("MinValue: " + tree.MinValue());
+			Console.WriteLine("MaxValue: " + tree.MaxValue());
+			Console.WriteLine("Count: " + tree.Count());
+			Console.WriteLine("Sum: " + tree.Sum());
+			Console.WriteLine("Avg: " + tree.Avg());
+			sw.Start();
+			Console.WriteLine("Height: " + tree.Height());
+			sw.Stop();
+			Console.WriteLine($"Вычислено за {sw.Elapsed.TotalMilliseconds} ms");
+			Console.WriteLine(delimiter);
+			#endregion
+
+			TreePerformance.Measure("Минимальное значение в дереве", tree.MinValue);
+			TreePerformance.Measure("Максимальное значение в дереве", tree.MaxValue);
+			TreePerformance.Measure("Сумма элементов дерева", tree.Sum);
+			TreePerformance.Measure("Количество элементов дерева", tree.Count);
+			TreePerformance.Measure("Вреднее арифметическое элементов дерева", tree.Avg);
 		}
 	}
 }

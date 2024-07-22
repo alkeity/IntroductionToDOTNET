@@ -1,5 +1,6 @@
 ﻿#undef DEBUG
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BinaryTree
 {
-	internal class Tree
+	internal class Tree : IEnumerable, IEnumerator
 	{
 		public class Element
 		{
@@ -52,7 +53,9 @@ namespace BinaryTree
 		}
 		protected Element root;
 
-        public Tree()
+		object IEnumerator.Current => root.Data;
+
+		public Tree()
         {
 #if DEBUG
 			Console.WriteLine($"Tree ctor: {GetHashCode()}");
@@ -91,7 +94,7 @@ namespace BinaryTree
 		public void Print()
 		{
 			Print(this.root);
-			Console.WriteLine();
+			//Console.WriteLine("Root: " + root.Data);
 		}
 
 		void Print(Element root)
@@ -187,6 +190,7 @@ namespace BinaryTree
 
 		Element Erase(int data, Element root) // TODO element exist check
 		{
+			if (root == null) return null;
 			if (root.Data > data) root.PLeft = Erase(data, root.PLeft);
 			else if (root.Data < data) root.PRight = Erase(data, root.PRight);
 			else
@@ -215,7 +219,32 @@ namespace BinaryTree
 			return depthLeft > depthRight ? depthLeft + 1 : depthRight + 1;
 		}
 
+		void Balance(Element root)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void TreePrint()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Add(int data)
+		{
+			Insert(data, root);
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return this;
+		}
+
+		bool IEnumerator.MoveNext()
+		{
+			throw new NotImplementedException();
+		}
+
+		void IEnumerator.Reset()
 		{
 			throw new NotImplementedException();
 		}
