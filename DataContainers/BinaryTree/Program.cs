@@ -85,11 +85,11 @@ namespace BinaryTree
 			Console.WriteLine(delimiter);
 			#endregion
 
-			TreePerformance.Measure("Минимальное значение в дереве", tree.MinValue);
-			TreePerformance.Measure("Максимальное значение в дереве", tree.MaxValue);
-			TreePerformance.Measure("Сумма элементов дерева", tree.Sum);
-			TreePerformance.Measure("Количество элементов дерева", tree.Count);
-			TreePerformance.Measure("Вреднее арифметическое элементов дерева", tree.Avg);
+			TreePerformance<int>.Measure("Минимальное значение в дереве", tree.MinValue);
+			TreePerformance<int>.Measure("Максимальное значение в дереве", tree.MaxValue);
+			TreePerformance<int>.Measure("Сумма элементов дерева", tree.Sum);
+			TreePerformance<int>.Measure("Количество элементов дерева", tree.Count);
+			TreePerformance<double>.Measure("Cреднее арифметическое элементов дерева", tree.Avg);
 		}
 	}
 }
