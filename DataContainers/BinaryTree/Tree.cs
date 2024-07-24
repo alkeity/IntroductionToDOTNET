@@ -239,17 +239,17 @@ namespace BinaryTree
 			List<Element> array = new List<Element>();
 			TreeToArray(ref array, this.root);
 			Clear();
-			this.root = array[array.Count / 2];
+			this.root = Balance(array, 0, array.Count - 1);
+		}
 
-			for (int i = 0; i < array.Count / 2; i++)
-			{
-				Insert(array[i], this.root);
-			}
-
-			for (int i = array.Count / 2 + 1; i < array.Count; i++)
-			{
-				Insert(array[i], this.root);
-			}
+		Element Balance(List<Element> array, int start, int end)
+		{
+			if (start > end) return null;
+			int midIndex = (start + end) / 2;
+			Element root = array[midIndex];
+			root.PLeft = Balance(array, start, midIndex - 1);
+			root.PRight = Balance(array, midIndex + 1, end);
+			return root;
 		}
 
 		void TreeToArray(ref List<Element> array, Element root)
