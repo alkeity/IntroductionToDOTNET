@@ -45,6 +45,8 @@ namespace BinaryTree
 			Console.WriteLine("Balanced tree:");
 			tree.Print();
 
+			tree.TreePrint();
+
 			//tree.Clear();
 			//Console.WriteLine("Tree clear. Print:");
 			//tree.Print();

@@ -262,7 +262,16 @@ namespace BinaryTree
 
 		public void TreePrint()
 		{
-			throw new NotImplementedException();
+			TreePrint(root);
+		}
+
+		void TreePrint(Element root, string indent = "")
+		{
+			if (root == null) return;
+			Console.WriteLine($"{indent}-[{root.Data}]");
+			indent += root.PLeft == null && root.PRight == null ? "   " : "  |";
+			TreePrint(root.PLeft, indent);
+			TreePrint(root.PRight, indent);
 		}
 
 		public void Add(int data)
