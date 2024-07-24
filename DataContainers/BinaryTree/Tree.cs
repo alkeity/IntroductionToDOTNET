@@ -269,7 +269,7 @@ namespace BinaryTree
 		{
 			if (root == null) return;
 			Console.WriteLine($"{indent}-[{root.Data}]");
-			indent += root.PLeft == null && root.PRight == null ? "   " : "  |";
+			indent += "   ";
 			TreePrint(root.PLeft, indent);
 			TreePrint(root.PRight, indent);
 		}
