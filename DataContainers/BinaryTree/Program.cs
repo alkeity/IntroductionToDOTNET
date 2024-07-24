@@ -1,5 +1,5 @@
-﻿//#define TREE_BASE_CHECK
-#define INITIALIZER_CHECK
+﻿#define TREE_BASE_CHECK
+//#define INITIALIZER_CHECK
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,16 +35,20 @@ namespace BinaryTree
 			Console.WriteLine("Height: " + tree.Height());
 			Console.WriteLine(delimiter);
 
-			Console.WriteLine("Value to delete: ");
-			int val = Convert.ToInt32(Console.ReadLine());
-			tree.Erase(val);
-			tree.Print();
-			Console.WriteLine(delimiter);
+			//Console.WriteLine("Value to delete: ");
+			//int val = Convert.ToInt32(Console.ReadLine());
+			//tree.Erase(val);
+			//tree.Print();
+			//Console.WriteLine(delimiter);
 
-			tree.Clear();
-			Console.WriteLine("Tree clear. Print:");
+			tree.Balance();
+			Console.WriteLine("Balanced tree:");
 			tree.Print();
-			Console.WriteLine(delimiter);
+
+			//tree.Clear();
+			//Console.WriteLine("Tree clear. Print:");
+			//tree.Print();
+			//Console.WriteLine(delimiter);
 #endif
 #if INITIALIZER_CHECK
 			try
@@ -62,6 +66,7 @@ namespace BinaryTree
 				throw;
 			}
 #endif
+#if TREE_PERFORMANCE
 			Tree tree = new Tree();
 
 			for (int i = 0; i < n; i++)
@@ -72,24 +77,26 @@ namespace BinaryTree
 
 			//tree.Print();
 			#region NoDelegatePerformanceCheck
-			Stopwatch sw = new Stopwatch();
-			Console.WriteLine("MinValue: " + tree.MinValue());
-			Console.WriteLine("MaxValue: " + tree.MaxValue());
-			Console.WriteLine("Count: " + tree.Count());
-			Console.WriteLine("Sum: " + tree.Sum());
-			Console.WriteLine("Avg: " + tree.Avg());
-			sw.Start();
-			Console.WriteLine("Height: " + tree.Height());
-			sw.Stop();
-			Console.WriteLine($"Вычислено за {sw.Elapsed.TotalMilliseconds} ms");
-			Console.WriteLine(delimiter);
+			//Stopwatch sw = new Stopwatch();
+			//Console.WriteLine("MinValue: " + tree.MinValue());
+			//Console.WriteLine("MaxValue: " + tree.MaxValue());
+			//Console.WriteLine("Count: " + tree.Count());
+			//Console.WriteLine("Sum: " + tree.Sum());
+			//Console.WriteLine("Avg: " + tree.Avg());
+			//sw.Start();
+			//Console.WriteLine("Height: " + tree.Height());
+			//sw.Stop();
+			//Console.WriteLine($"Вычислено за {sw.Elapsed.TotalMilliseconds} ms");
+			//Console.WriteLine(delimiter);
 			#endregion
 
 			TreePerformance<int>.Measure("Минимальное значение в дереве", tree.MinValue);
 			TreePerformance<int>.Measure("Максимальное значение в дереве", tree.MaxValue);
 			TreePerformance<int>.Measure("Сумма элементов дерева", tree.Sum);
 			TreePerformance<int>.Measure("Количество элементов дерева", tree.Count);
-			TreePerformance<double>.Measure("Cреднее арифметическое элементов дерева", tree.Avg);
+			TreePerformance<double>.Measure("Cреднее арифметическое элементов дерева", tree.Avg); 
+#endif
+
 		}
 	}
 }

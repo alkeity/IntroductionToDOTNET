@@ -91,10 +91,25 @@ namespace BinaryTree
 			}
 		}
 
+		protected virtual void Insert(Element newElem, Element root)
+		{
+			if (root == null) return;
+			if (newElem.Data < root.Data)
+			{
+				if (root.PLeft == null) root.PLeft = newElem;
+				else Insert(newElem, root.PLeft);
+			}
+			else
+			{
+				if (root.PRight == null) root.PRight = newElem;
+				else Insert(newElem, root.PRight);
+			}
+		}
+
 		public void Print()
 		{
 			Print(this.root);
-			//Console.WriteLine("Root: " + root.Data);
+			Console.WriteLine("Root: " + root.Data);
 		}
 
 		void Print(Element root)
@@ -219,9 +234,30 @@ namespace BinaryTree
 			return depthLeft > depthRight ? depthLeft + 1 : depthRight + 1;
 		}
 
-		void Balance(Element root)
+		public void Balance()
 		{
-			throw new NotImplementedException();
+			List<Element> array = new List<Element>();
+			TreeToArray(ref array, this.root);
+			Clear();
+			this.root = array[array.Count / 2];
+
+			for (int i = 0; i < array.Count / 2; i++)
+			{
+				Insert(array[i], this.root);
+			}
+
+			for (int i = array.Count / 2 + 1; i < array.Count; i++)
+			{
+				Insert(array[i], this.root);
+			}
+		}
+
+		void TreeToArray(ref List<Element> array, Element root)
+		{
+			if (root == null) return;
+			TreeToArray(ref array, root.PLeft);
+			array.Add(root);
+			TreeToArray(ref array, root.PRight);
 		}
 
 		public void TreePrint()
@@ -241,7 +277,7 @@ namespace BinaryTree
 
 		bool IEnumerator.MoveNext()
 		{
-			throw new NotImplementedException();
+			return root == null ? false : true;
 		}
 
 		void IEnumerator.Reset()
